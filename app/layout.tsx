@@ -22,11 +22,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html suppressHydrationWarning lang="en">
 			<head />
-			<body className={clsx(" dark min-h-screen bg-background font-sans antialiased", outfitFont.className)}>
+			<body className={clsx("min-h-screen bg-background font-sans antialiased dark", outfitFont.className)}>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-					<div className="relative flex flex-col h-screen px-2 md:px-4 xl:px-6 py-2 md:py-4 xl:py-6">
+					<div className="relative flex h-screen flex-col px-2 py-2 md:px-4 md:py-4 xl:px-6 xl:py-6">
 						<Header />
-						<main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">{children}</main>
+						<main className="container mx-auto max-w-7xl flex-grow px-6 pt-16">{children}</main>
 					</div>
 				</Providers>
 			</body>

@@ -18,7 +18,7 @@ export const HeaderNavLink = ({ link, title }: { link: string; title: string }) 
 			className={clsx(
 				"text-foreground/75",
 				isActive && "font-bold underline",
-				"hover:text-foreground duration-300 transition-colors",
+				"transition-colors duration-300 hover:text-foreground",
 			)}
 			aria-current={isActive ? "page" : undefined}
 		>
