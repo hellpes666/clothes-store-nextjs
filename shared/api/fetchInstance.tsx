@@ -1,5 +1,9 @@
+import { Cart } from "../entity/Cart";
+import { Product } from "../entity/Product";
+
 type FETCH_METHOD = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
-type URL_CATEGORY = "/products" | "/carts";
+type URL_CATEGORY = "/products" | "/carts" | "/products?limit=6";
+type ReturnTypeFetchInstance = Promise<Product[]> | Promise<Cart[]>;
 
 /**
  * Функция, которая делает запрос на fakestoreapi
@@ -7,7 +11,7 @@ type URL_CATEGORY = "/products" | "/carts";
  * @param url URL в формате '/products' или '/carts'
  * @returns Данные в формате JSON
  */
-export const fetchInstance = async (method: FETCH_METHOD, url: URL_CATEGORY): Promise<unknown> => {
+export const fetchInstance = async <T,>(method: FETCH_METHOD, url: URL_CATEGORY): Promise<T> => {
 	try {
 		const response = await fetch(`https://fakestoreapi.com${url}`, { method });
 
@@ -16,7 +20,7 @@ export const fetchInstance = async (method: FETCH_METHOD, url: URL_CATEGORY): Pr
 		}
 
 		const res = await response.json();
-		return res.then((data: unknown) => data);
+		return res as T;
 	} catch (error) {
 		console.error("Ошибка при выполнении запроса:", error);
 		throw error;
