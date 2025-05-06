@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { Avatar } from "@heroui/avatar";
-import { ShoppingBasket } from "lucide-react";
 import { HeaderLinksGroup } from "./HeaderLinksGroup";
+import { Cart } from "./Cart";
 
-export const Header = () =>  {
+export const Header = () => {
 	return (
 		<header className="flex-items hidden justify-between md:flex md:py-2">
 			<div className="flex items-center gap-3">
@@ -18,7 +18,8 @@ export const Header = () =>  {
 			</div>
 
 			<div className="flex items-center gap-6">
-				<ShoppingBasket aria-label="cart" />
+				<Cart />
+
 				<Avatar
 					size="md"
 					isBordered
