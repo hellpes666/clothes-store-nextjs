@@ -4,7 +4,7 @@ import { Button, Chip } from "@heroui/react";
 import clsx from "clsx";
 import React from "react";
 
-export const BuyButton = ({ title, price, id, cn }: { title: string; price: number; id: number; cn: string }) => {
+export const CardInfoLabel = ({ title, price, id, cn }: { title: string; price: number; id: number; cn: string }) => {
 	//TODO add to the cart
 	//TODO add discount price
 	return (

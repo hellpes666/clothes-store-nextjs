@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
-import { BuyButton } from "@/shared/ui/buyButton/BuyButton";
+import { CardInfoLabel } from "@/shared/ui/buyButton/CardInfoLabel";
 import { gridVariants, cardVariants } from "@/shared/ui/animate/lib/homePageAnimationVariants";
 import { type Product } from "@/shared/entity/Product";
 
@@ -48,7 +48,7 @@ export function ProductGrid({ products, homeGrid }: { products: Product[]; homeG
 								/>
 							</div>
 						</Link>
-						<BuyButton {...product} cn="w-full max-w-[350px] mx-auto mt-4" />
+						<CardInfoLabel {...product} cn="w-full max-w-[350px] mx-auto mt-4" />
 					</motion.div>
 				);
 			})}
