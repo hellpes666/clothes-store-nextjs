@@ -120,6 +120,12 @@ export default async function Home() {
 					</Link>
 				</div>
 			</section>
+			<Link
+				href="products"
+				className="rounded border-2 border-white/60 bg-primary-200 p-3 text-xl text-white/60 transition-all duration-300 will-change-auto hover:rounded-2xl hover:border-white hover:text-white"
+			>
+				Go to the all Products
+			</Link>
 		</div>
 	);
 }
