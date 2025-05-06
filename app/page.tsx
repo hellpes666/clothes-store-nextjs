@@ -7,7 +7,7 @@ import { animationOnAxis } from "@/shared/ui/animate/lib/animationOnAxis";
 import { ProductGrid } from "@/components/ProductGrid/ProductGrid";
 
 export default async function Home() {
-	const previewProducts = await fetchInstance<Product[]>("GET", "/products?limit=6");
+	const previewProducts = await fetchInstance<{ products: Product[] }>("GET", "/products?limit=6");
 
 	return (
 		<div className="flex w-full flex-col items-center justify-center gap-24 px-2 text-3xl md:px-4 md:text-5xl xl:px-6 xl:text-6xl">
@@ -25,7 +25,7 @@ export default async function Home() {
 			</h1>
 
 			<section className="flex w-full flex-col gap-5">
-				<ProductGrid products={previewProducts} />
+				<ProductGrid products={previewProducts.products} />
 			</section>
 			<Link
 				href="products"

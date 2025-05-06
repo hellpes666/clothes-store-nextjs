@@ -6,7 +6,7 @@ import React from "react";
 
 export const BuyButton = ({ title, price, id, cn }: { title: string; price: number; id: number; cn: string }) => {
 	//TODO add to the cart
-
+	//TODO add discount price
 	return (
 		<Button
 			className={clsx(

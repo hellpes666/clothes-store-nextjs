@@ -1,9 +1,9 @@
-import { Cart } from "../entity/Cart";
-import { Product } from "../entity/Product";
+// import { Cart } from "../entity/Cart";
+// import { Product } from "../entity/Product";
 
 type FETCH_METHOD = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
-type URL_CATEGORY = "/products" | "/carts" | "/products?limit=6";
-type ReturnTypeFetchInstance = Promise<Product[]> | Promise<Cart[]>;
+// type URL_CATEGORY = "/products" | "/carts" | "/products/category" | "/products?limit=6";
+// type ReturnTypeFetchInstance = Promise<Product[]> | Promise<Cart[]>;
 
 /**
  * Функция, которая делает запрос на fakestoreapi
@@ -11,9 +11,9 @@ type ReturnTypeFetchInstance = Promise<Product[]> | Promise<Cart[]>;
  * @param url URL в формате '/products' или '/carts'
  * @returns Данные в формате JSON
  */
-export const fetchInstance = async <T,>(method: FETCH_METHOD, url: URL_CATEGORY): Promise<T> => {
+export const fetchInstance = async <T,>(method: FETCH_METHOD, url: string): Promise<T> => {
 	try {
-		const response = await fetch(`https://fakestoreapi.com${url}`, { method });
+		const response = await fetch(`https://fakestoreapi.in/api${url}`, { method });
 
 		if (!response.ok) {
 			throw new Error(`Ошибка: ${response.status} ${response.statusText}`);

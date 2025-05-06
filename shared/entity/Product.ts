@@ -5,4 +5,8 @@ export type Product = {
 	description: string;
 	category: string;
 	image: string;
+	brand: string
+	model: string
+	color: string
+	discount: number
 };
