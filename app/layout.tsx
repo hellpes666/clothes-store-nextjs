@@ -2,9 +2,9 @@ import "@/styles/globals.css";
 import { Viewport } from "next";
 import clsx from "clsx";
 import { Outfit } from "next/font/google";
-
-import { Providers } from "./providers";
+import Providers from "./providers";
 import { Header } from "@/components/Header/Header";
+
 
 const outfitFont = Outfit({
 	subsets: ["latin"],

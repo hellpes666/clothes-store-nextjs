@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { HeaderLinksGroup } from "./HeaderLinksGroup";
 import { Avatar } from "@heroui/avatar";
 import { ShoppingBasket } from "lucide-react";
+import { HeaderLinksGroup } from "./HeaderLinksGroup";
 
-export const Header = () => {
+export const Header = () =>  {
 	return (
 		<header className="flex-items hidden justify-between md:flex md:py-2">
 			<div className="flex items-center gap-3">
