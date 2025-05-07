@@ -20,13 +20,15 @@ export const Header = () => {
 			<div className="flex items-center gap-6">
 				<Cart />
 
-				<Avatar
-					size="md"
-					isBordered
-					radius="sm"
-					src="https://i.pravatar.cc/150?u=a04258a2462d826712d"
-					color="primary"
-				/>
+				<Link href={`/auth/register`}>
+					<Avatar
+						size="md"
+						isBordered
+						radius="sm"
+						src="https://i.pravatar.cc/150?u=a04258a2462d826712d"
+						color="primary"
+					/>
+				</Link>
 			</div>
 		</header>
 	);

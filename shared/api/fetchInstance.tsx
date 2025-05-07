@@ -11,9 +11,13 @@ type FETCH_METHOD = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
  * @param url URL в формате '/products' или '/carts'
  * @returns Данные в формате JSON
  */
-export const fetchInstance = async <T,>(method: FETCH_METHOD, url: string): Promise<T> => {
+export const fetchInstance = async <T,>(method: FETCH_METHOD, url: string, body?: object): Promise<T> => {
 	try {
-		const response = await fetch(`https://fakestoreapi.in/api${url}`, { method });
+		const response = await fetch(`https://fakestoreapi.in/api${url}`, {
+			method,
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(body),
+		});
 
 		if (!response.ok) {
 			throw new Error(`Ошибка: ${response.status} ${response.statusText}`);
