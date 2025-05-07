@@ -7,7 +7,7 @@ import Image from "next/image";
 export default async function ProductInfo({ params }: { params: Promise<{ productId: string }> }) {
 	const { productId } = await params;
 	const productData = (await fetchInstance<{ product: Product }>("GET", `/products/${productId}`)).product;
-
+	console.log(productData);
 	return (
 		<div className="flex w-full flex-col gap-6 rounded border bg-white p-6 md:flex-row">
 			{/* Левая часть: большая зона с изображением */}
@@ -58,7 +58,7 @@ export default async function ProductInfo({ params }: { params: Promise<{ produc
 						<span className="font-bold text-black">${productData.price}</span>
 					)}
 				</div>
-				<CartButton />
+				<CartButton product={productData} />
 			</section>
 		</div>
 	);

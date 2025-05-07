@@ -23,9 +23,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html suppressHydrationWarning lang="en">
 			<head />
-			<body className={clsx("min-h-screen bg-background font-sans antialiased dark", outfitFont.className)}>
+			<body className={clsx("bg-background font-sans antialiased dark", outfitFont.className)}>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-					<div className="relative flex h-screen flex-col px-2 py-2 md:px-4 md:py-4 xl:px-6 xl:py-6">
+					<div className="relative flex min-h-screen flex-col px-2 py-2 md:px-4 md:py-4 xl:px-6 xl:py-6">
 						<Header />
 						<CartModal />
 						<main className="flex-grow px-36 pb-24 pt-16">{children}</main>
