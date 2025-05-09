@@ -5,32 +5,40 @@ import Link from "next/link";
 import clsx from "clsx";
 import { CardInfoLabel } from "@/shared/ui/buyButton/CardInfoLabel";
 import { gridVariants, cardVariants } from "@/shared/ui/animate/lib/homePageAnimationVariants";
-import { type Product } from "@/shared/entity/Product";
+import { useInfiniteScrollGetItems } from "@/shared/hooks/useInfiniteScrollGetItems";
+import { Alert, Spinner } from "@heroui/react";
 
-export function ProductGrid({ products, homeGrid }: { products: Product[]; homeGrid?: string }) {
+export function ProductGrid() {
+	const { cursor, isLoading, error, data } = useInfiniteScrollGetItems();
+
+	if (isLoading) {
+		return <Spinner className="flex h-full min-h-[400px] items-center justify-center" />;
+	}
+
+	if (error) {
+		return (
+			<div className="flex h-full items-center justify-center">
+				<Alert className="text-red-500">Failed to load products. Please try again later.</Alert>
+			</div>
+		);
+	}
+
+	const products = data?.pages.flatMap((page) => page.products) ?? [];
+
 	return (
-		<motion.div
-			className={clsx("grid", homeGrid ? "grid-cols-2 gap-4 md:grid-cols-3" : "w-full grid-cols-3 gap-12")}
-			variants={gridVariants}
-			initial="initial"
-			animate="animate"
-		>
-			{products.map((product, i) => {
-				const homeGridStyles =
-					homeGrid && (i === 0 || i === 2 || i === 5)
-						? clsx({
-								"col-span-2": i === 0 || i === 5,
-								"row-span-3 md:row-span-2": i === 2,
-							})
-						: "";
-
-				return (
+		<div className="flex flex-col items-center justify-center">
+			<motion.div
+				className={clsx("grid", "w-full grid-cols-3 gap-12")}
+				variants={gridVariants}
+				initial="initial"
+				animate="animate"
+			>
+				{products.map((product, i) => (
 					<motion.div
 						key={product.id}
 						variants={cardVariants}
 						className={clsx(
 							"group relative flex h-full w-full max-w-full flex-col justify-between rounded bg-white p-4 will-change-auto",
-							homeGridStyles,
 						)}
 					>
 						<Link
@@ -50,8 +58,9 @@ export function ProductGrid({ products, homeGrid }: { products: Product[]; homeG
 						</Link>
 						<CardInfoLabel {...product} cn="w-full max-w-[350px] mx-auto mt-4" />
 					</motion.div>
-				);
-			})}
-		</motion.div>
+				))}
+			</motion.div>
+			{cursor}
+		</div>
 	);
 }

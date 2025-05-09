@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useCartStore } from "@/shared/hooks/useCartStore";
+import { useCartStore } from "@/shared/store/useCartStore";
 import {
 	Button,
 	Chip,
