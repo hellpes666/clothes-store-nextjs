@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Avatar } from "@heroui/avatar";
 import { HeaderLinksGroup } from "./HeaderLinksGroup";
 import { Cart } from "./Cart";
 
@@ -17,19 +16,7 @@ export const Header = () => {
 				<HeaderLinksGroup />
 			</div>
 
-			<div className="flex items-center gap-6">
-				<Cart />
-
-				<Link href={`/auth/register`}>
-					<Avatar
-						size="md"
-						isBordered
-						radius="sm"
-						src="https://i.pravatar.cc/150?u=a04258a2462d826712d"
-						color="primary"
-					/>
-				</Link>
-			</div>
+			<Cart />
 		</header>
 	);
 };
