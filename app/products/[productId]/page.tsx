@@ -10,10 +10,11 @@ export default async function ProductInfo({ params }: { params: Promise<{ produc
 	const productData = (await fetchInstance<{ product: Product }>("GET", `/products/${productId}`)).product;
 	console.log(productData);
 	return (
-		<div className="flex w-full flex-col gap-6 rounded border bg-white p-6 md:flex-row">
+		<div className="flex w-full flex-col gap-6 rounded border bg-white p-6 lg:flex-row">
 			{/* Левая часть: большая зона с изображением */}
 			<div className="flex w-full flex-[3] items-center justify-center">
 				<Image
+					draggable={false}
 					src={productData.image}
 					width={450}
 					height={450}
