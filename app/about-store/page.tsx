@@ -1,7 +1,16 @@
 import { DevelopedBy } from "@/shared/ui/links/DevelopedBy";
+import { Metadata } from "next";
 import React from "react";
 
-export default function AboutMe() {
+export const dynamic = "force-static";
+
+export const metadata: Metadata = {
+	title: "О магазине | RTU MIREA Store",
+	description:
+		"Описание учебного онлайн-магазина, разработанного в рамках проекта в РТУ МИРЭА. Подробности о технологиях и целях.",
+};
+
+export default function AboutStore() {
 	return (
 		<div className="mx-auto max-w-4xl px-4 py-16 text-lg leading-relaxed md:text-xl">
 			<h1 className="mb-6 text-3xl font-bold text-secondary-900">О магазине</h1>
@@ -21,8 +30,11 @@ export default function AboutMe() {
 				Проект не является коммерческим и создан исключительно в образовательных целях для демонстрации навыков
 				разработки фронтенда и взаимодействия с API.
 			</p>
-			<p className="mb-4 font-semibold text-secondary-700">Спасибо за внимание!</p>
-			<div className="flex justify-end">
+			<hr />
+			<div className="mt-5 flex items-center justify-between">
+				<p className="text-sm text-gray-500">
+					Если вас заинтересовал технический аспект проекта — буду рад обсудить реализацию.
+				</p>
 				<DevelopedBy />
 			</div>
 		</div>

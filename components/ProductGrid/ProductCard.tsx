@@ -6,6 +6,8 @@ import { Product } from "@/shared/entity/Product";
 import { cardVariants } from "@/shared/ui/animate/lib/homePageAnimationVariants";
 import { CardInfoLabel } from "@/shared/ui/buyButton/CardInfoLabel";
 
+//TODO разобраться почему стили не применяются
+
 /**Возвращает стили для начальной страницы, в виде кастомной сетки */
 function HomeGridStyles(index: number) {
 	const homeGridStyles = clsx({

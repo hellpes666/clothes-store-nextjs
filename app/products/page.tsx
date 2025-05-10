@@ -1,6 +1,12 @@
 import { ItemsGrid } from "@/components/ProductGrid/ItemsGrid";
-import { ProductGrid } from "@/components/ProductGrid/ProductGrid";
 import { fetchInstance } from "@/shared/api/fetchInstance";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Каталог товаров | RTU MIREA Store",
+	description:
+		"Просматривайте все доступные категории и товары в учебном онлайн-магазине RTU MIREA. Фильтрация и адаптивный интерфейс.",
+};
 
 export default async function Products() {
 	const categories = (await fetchInstance<{ categories: string[] }>("GET", "/products/category")).categories;

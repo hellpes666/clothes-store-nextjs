@@ -1,6 +1,13 @@
 import { DevelopedBy } from "@/shared/ui/links/DevelopedBy";
+import { Metadata } from "next";
 import React from "react";
 
+export const dynamic = "force-static";
+
+export const metadata: Metadata = {
+	title: "Гарантии Магазина | RTU MIREA Store",
+	description: "Информация о гарантиях и целях проекта интернет-магазина RTU MIREA.",
+};
 export default function Guarantee() {
 	return (
 		<div className="mx-auto max-w-4xl px-4 py-16 text-lg leading-relaxed md:text-xl">
@@ -25,10 +32,11 @@ export default function Guarantee() {
 				<li>Право на возврат и обмен товара;</li>
 				<li>Безопасность пользовательских данных.</li>
 			</ul>
-			<p className="text-sm text-gray-500">
-				Если вас заинтересовал технический аспект проекта — буду рад обсудить реализацию.
-			</p>
-			<div className="flex justify-end">
+			<hr />
+			<div className="mt-5 flex items-center justify-between">
+				<p className="text-sm text-gray-500">
+					Если вас заинтересовал технический аспект проекта — буду рад обсудить реализацию.
+				</p>
 				<DevelopedBy />
 			</div>
 		</div>

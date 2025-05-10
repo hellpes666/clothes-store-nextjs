@@ -3,7 +3,7 @@ import { HeaderNavLink } from "./HeaderNavLink";
 
 const HEADER_NAV: { link: string; title: string }[] = [
 	{ link: "/products", title: "Products" },
-	{ link: "/about-me", title: "About Me" },
+	{ link: "/about-store", title: "About Store" },
 	{ link: "/guarantee", title: "Guarantee" },
 ];
 

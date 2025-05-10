@@ -1,9 +1,18 @@
 import { AnimateTemplate } from "@/shared/ui/animate/AnimateTemplate";
 import { DevelopedBy } from "@/shared/ui/links/DevelopedBy";
 import { animationOnAxis } from "@/shared/ui/animate/lib/animationOnAxis";
-import { PreviewProductGrid } from "@/components/ProductGrid/PreviewProducts";
-import { ItemsGrid } from "@/components/ProductGrid/ItemsGrid";
-import Link from "next/link";
+import dynamic from "next/dynamic";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Учебный интернет-магазин | RTU MIREA Store",
+	description:
+		"Главная страница демонстрационного интернет-магазина, разработанного для проекта в РТУ МИРЭА. Современный интерфейс, анимации и предварительный просмотр товаров.",
+};
+
+const DynamicProductsGridPreview = dynamic(() =>
+	import("../components/ProductGrid/ItemsGrid").then((mod) => mod.ItemsGrid),
+);
 
 export default async function Home() {
 	return (
@@ -22,9 +31,8 @@ export default async function Home() {
 			</h1>
 
 			<section className="flex w-full flex-col gap-5">
-				<ItemsGrid isHomePage={true} />
+				<DynamicProductsGridPreview isHomePage={true} />
 			</section>
-			
 		</div>
 	);
 }
