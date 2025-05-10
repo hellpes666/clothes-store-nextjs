@@ -1,9 +1,10 @@
+import { ItemsGrid } from "@/components/ProductGrid/ItemsGrid";
 import { ProductGrid } from "@/components/ProductGrid/ProductGrid";
 import { fetchInstance } from "@/shared/api/fetchInstance";
-import { Product } from "@/shared/entity/Product";
 
 export default async function Products() {
 	const categories = (await fetchInstance<{ categories: string[] }>("GET", "/products/category")).categories;
+
 	return (
 		<div className="grid w-full grid-cols-4 gap-12 py-6">
 			{/* Filter Column (1/5) */}
@@ -21,7 +22,7 @@ export default async function Products() {
 			{/* Items Column (4/5) */}
 			<section className="col-span-3">
 				{/* Product grid or list */}
-				<ProductGrid  />
+				<ItemsGrid isHomePage={false} />
 			</section>
 		</div>
 	);

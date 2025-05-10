@@ -1,7 +1,7 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { itemsApi } from "../api/itemsApiQueryOptions";
 import { useIntersection } from "./useIntersection";
-import { Spinner } from "@heroui/react";
+import { Button, Spinner } from "@heroui/react";
 
 export const useInfiniteScrollGetItems = () => {
 	const { data, error, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery({
@@ -12,8 +12,23 @@ export const useInfiniteScrollGetItems = () => {
 
 	const cursor = (
 		<div className="" ref={cursorRef}>
-			{!hasNextPage && <p className="text-primary-500">Товары закончились</p>}
-			{isFetchingNextPage && <Spinner className="flex items-center justify-center" />}
+			{!hasNextPage && (
+				<Button
+					color="primary"
+					className="hover-btn mt-5"
+					size="lg"
+					onClick={() => {
+						window.scrollTo({
+							top: 0,
+							left: 0,
+							behavior: "smooth",
+						});
+					}}
+				>
+					Scroll to the top
+				</Button>
+			)}
+			{isFetchingNextPage && <Spinner className="mt-5 flex items-center justify-center" />}
 		</div>
 	);
 

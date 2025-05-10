@@ -2,6 +2,8 @@ import { AnimateTemplate } from "@/shared/ui/animate/AnimateTemplate";
 import { DevelopedBy } from "@/shared/ui/links/DevelopedBy";
 import { animationOnAxis } from "@/shared/ui/animate/lib/animationOnAxis";
 import { PreviewProductGrid } from "@/components/ProductGrid/PreviewProducts";
+import { ItemsGrid } from "@/components/ProductGrid/ItemsGrid";
+import Link from "next/link";
 
 export default async function Home() {
 	return (
@@ -20,8 +22,9 @@ export default async function Home() {
 			</h1>
 
 			<section className="flex w-full flex-col gap-5">
-				<PreviewProductGrid />
+				<ItemsGrid isHomePage={true} />
 			</section>
+			
 		</div>
 	);
 }

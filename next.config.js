@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	images: {
-		domains: ["https://fakestoreapi.in", "storage.googleapis.com"],
+		remotePatterns: [new URL("https://fakestoreapi.in/**"), new URL("https://storage.googleapis.com/**")],
 	},
 };
 

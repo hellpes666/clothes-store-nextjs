@@ -12,10 +12,10 @@ export const itemsApi = {
 	getItemsInfinityQueryOptions: () => {
 		return infiniteQueryOptions<ApiResponse>({
 			queryKey: ["items", "list"],
-			queryFn: ({ pageParam = 1 }) => fetchInstance("GET", `/products?page=${pageParam}&limit=8`),
+			queryFn: ({ pageParam = 1 }) => fetchInstance("GET", `/products?page=${pageParam}&limit=6`),
 			initialPageParam: 1,
 			getNextPageParam: (lastPage, allPages) => {
-				if (!lastPage.products || lastPage.products.length < 8) {
+				if (!lastPage.products || lastPage.products.length < 6) {
 					return undefined;
 				}
 
