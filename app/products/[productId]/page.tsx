@@ -1,6 +1,7 @@
 import { fetchInstance } from "@/shared/api/fetchInstance";
 import { type Product } from "@/shared/entity/Product";
 import { CartButton } from "@/shared/ui/buyButton/CartButton";
+import { Trash2 } from "lucide-react";
 
 import Image from "next/image";
 
@@ -57,8 +58,8 @@ export default async function ProductInfo({ params }: { params: Promise<{ produc
 					) : (
 						<span className="font-bold text-black">${productData.price}</span>
 					)}
+					<CartButton product={productData} />
 				</div>
-				<CartButton product={productData} />
 			</section>
 		</div>
 	);

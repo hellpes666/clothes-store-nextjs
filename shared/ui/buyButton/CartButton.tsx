@@ -1,4 +1,5 @@
 "use client";
+
 import { Product } from "@/shared/entity/Product";
 import { useCartStore } from "@/shared/store/useCartStore";
 import { Button } from "@heroui/react";
@@ -8,8 +9,8 @@ export const CartButton = ({ product }: { product: Product }) => {
 
 	return (
 		<Button
-			className="w-full bg-primary text-xl font-medium text-white transition-all duration-300 ease-in-out hover:border hover:border-white hover:bg-primary/90 active:scale-95 active:border-white md:w-auto"
-			color="primary"
+			className="w-full text-xl font-medium text-white transition-all duration-300 ease-in-out active:scale-95 md:w-auto"
+			color="default"
 			onClick={() => addItem(product)}
 		>
 			Add to the cart

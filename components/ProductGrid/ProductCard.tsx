@@ -6,8 +6,6 @@ import { Product } from "@/shared/entity/Product";
 import { cardVariants } from "@/shared/ui/animate/lib/homePageAnimationVariants";
 import { CardInfoLabel } from "@/shared/ui/buyButton/CardInfoLabel";
 
-//TODO разобраться почему стили не применяются
-
 /**Возвращает стили для начальной страницы, в виде кастомной сетки */
 function HomeGridStyles(index: number) {
 	const homeGridStyles = clsx({
@@ -28,15 +26,15 @@ export const ProductCard = ({
 	return (
 		<Link
 			href={`products/${product.id}`}
-			className="flex h-full w-full flex-col items-center justify-between"
+			className={clsx(
+				"group flex h-full w-full flex-col items-center justify-between",
+				homeGrid.isHomeGrid && HomeGridStyles(homeGrid.currentIndex),
+			)}
 			key={product.id}
 		>
 			<motion.div
 				variants={cardVariants}
-				className={clsx(
-					"group relative flex h-full w-full max-w-full flex-col justify-between rounded bg-white p-4 will-change-auto",
-					homeGrid.isHomeGrid && HomeGridStyles(homeGrid.currentIndex),
-				)}
+				className="relative flex h-full w-full max-w-full flex-col justify-between rounded bg-white p-4 will-change-auto"
 			>
 				<div className="flex flex-grow items-center justify-center">
 					<Image

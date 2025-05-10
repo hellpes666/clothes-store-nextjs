@@ -42,7 +42,10 @@ export function ItemsGrid({ isHomePage }: { isHomePage: boolean }) {
 	return (
 		<div className="flex flex-col items-center justify-center">
 			<motion.div
-				className={clsx("grid", isHomePage ? "grid-cols-2 gap-4 md:grid-cols-3" : "w-full grid-cols-3 gap-12")}
+				className={clsx(
+					"grid w-full",
+					isHomePage ? "grid-cols-2 gap-4 md:grid-cols-3" : "w-full grid-cols-3 gap-12",
+				)}
 				variants={gridVariants}
 				initial="initial"
 				animate="animate"

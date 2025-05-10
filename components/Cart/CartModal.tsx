@@ -2,17 +2,8 @@
 
 import Image from "next/image";
 import { useCartStore } from "@/shared/store/useCartStore";
-import {
-	Button,
-	Chip,
-	Divider,
-	Drawer,
-	DrawerBody,
-	DrawerContent,
-	DrawerFooter,
-	DrawerHeader,
-	Spinner,
-} from "@heroui/react";
+import { Button, Chip, Drawer, DrawerBody, DrawerContent, DrawerFooter, DrawerHeader, Spinner } from "@heroui/react";
+import { Minus, Plus, Trash2 } from "lucide-react";
 
 export const CartModal = () => {
 	const { isCartOpen, closeCart, cartItems, isLoading } = useCartStore();
@@ -43,19 +34,48 @@ export const CartModal = () => {
 							) : (
 								<section className="mt-5 flex flex-col items-start gap-3">
 									{cartItems.map((product) => (
-										<div
-											className="relative flex w-full items-start gap-5 rounded bg-white p-5"
-											key={product.id}
-										>
-											<Image src={product.image} alt={product.title} width={100} height={100} />
-											<div className="h-full w-[1px] bg-content1" />
-											<div className="flex flex-col gap-3">
-												<h4 className="text-content2">{product.title}</h4>
+											<div
+												className="relative flex w-full items-start gap-5 overflow-hidden rounded bg-white p-5"
+												key={product.id}
+											>
+												<Image
+													src={product.image}
+													alt={product.title}
+													width={100}
+													height={100}
+													className="relative"
+												/>
+												<div className="h-full w-[1px] bg-content1" />
+												<div className="flex flex-col gap-3">
+													<h4 className="text-content2">{product.title}</h4>
+												</div>
+
+												<div className="absolute right-5 top-5 w-[100px] -translate-y-1/2 translate-x-1/2 rotate-45 transform overflow-hidden rounded bg-default-100 text-center text-sm text-warning">
+													{product.discount} %
+												</div>
+
+												<div className="absolute bottom-5 right-5 flex items-center gap-5 rounded">
+													<Minus className="cursor-pointer rounded-full bg-default-200 p-1 text-white" />
+													<Chip color="warning" variant="faded" size="lg">
+														{product.discount > 0 ? (
+															<>
+																<span className="mr-2 text-gray-400 line-through">
+																	{product.price} $
+																</span>
+																<span>
+																	{Math.round(
+																		product.price * (1 - product.discount / 100),
+																	)}{" "}
+																	$
+																</span>
+															</>
+														) : (
+															<>{product.price} $</>
+														)}
+													</Chip>
+													<Plus className="cursor-pointer rounded-full bg-default-200 p-1 text-white" />
+												</div>
 											</div>
-											<Chip color="warning" variant="faded" className="absolute bottom-5 right-5">
-												{product.price} $
-											</Chip>
-										</div>
 									))}
 								</section>
 							)}
