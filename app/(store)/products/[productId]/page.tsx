@@ -1,4 +1,4 @@
-import { ProductPageHeader } from "@/components/Header/ProductPageHeader";
+import { ProductPageHeader } from "@/components/Header/store/ProductPageHeader";
 import { fetchInstance } from "@/shared/api/fetchInstance";
 import { type Product } from "@/shared/entity/Product";
 import { CartButton } from "@/shared/ui/buyButton/CartButton";

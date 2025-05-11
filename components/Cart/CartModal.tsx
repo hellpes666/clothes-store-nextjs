@@ -126,8 +126,9 @@ export const CartModal = () => {
 							</h3>
 
 							<Button
+								as="a"
+								href="/checkouts"
 								color={cartItems.length === 0 ? "default" : "primary"}
-								onPress={() => console.log(cartItems)}
 								disabled={cartItems.length === 0}
 							>
 								Buy

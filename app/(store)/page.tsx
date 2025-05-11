@@ -11,10 +11,11 @@ export const metadata: Metadata = {
 };
 
 const DynamicProductsGridPreview = dynamic(() =>
-	import("../components/ProductGrid/ItemsGrid").then((mod) => mod.ItemsGrid),
+	import("../../components/ProductGrid/ItemsGrid").then((mod) => mod.ItemsGrid),
 );
 
-export default async function Home() {
+//TODO разнести логику в разные layout поскольку будут 2 роуута checkouts и store
+export default async function HomePage() {
 	return (
 		<div className="flex w-full flex-col items-center justify-center gap-24 px-2 text-3xl md:px-4 md:text-5xl xl:px-6 xl:text-6xl">
 			<h1 className="flex w-full flex-col items-start justify-start gap-1">
