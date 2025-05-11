@@ -5,11 +5,11 @@ import { Select, SelectItem } from "@heroui/react";
 
 export const FormUserSelect = ({
 	label,
-	defaultSelectedKeys,
 	options,
 	required,
 	id,
 	register,
+	defaultValue,
 	name,
 	errors,
 }: SelectProps & FormElementProps & InformationFormProps) => {
@@ -24,7 +24,7 @@ export const FormUserSelect = ({
 			errorMessage={errors[name] && errors[name].message}
 			isRequired={required}
 			labelPlacement={"outside"}
-			defaultSelectedKeys={defaultSelectedKeys}
+			defaultSelectedKeys={defaultValue}
 			color="secondary"
 		>
 			{options.map((option) => (

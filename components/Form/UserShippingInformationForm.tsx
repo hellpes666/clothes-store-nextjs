@@ -1,35 +1,49 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
 	availableCountriesForSelect,
 	UserShippingInformationFormData,
 	userShippingInformationSchema,
 } from "@/shared/schemas/UserShippingInformationSchema";
 import { FormUserInput } from "./FormUserInput";
-import { FormElementProps, InformationFormProps, InputProps, SelectProps } from "@/shared/types/formElement";
 import { FormUserSelect } from "./FormUserSelect";
 import { FormUserInputOTP } from "./FormUserInputOTP";
 import { Button, Spinner } from "@heroui/react";
+import { useCheckoutsInformation } from "@/shared/store/useCheckoutsInformation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { FormElementProps, InformationFormProps, InputProps, SelectProps } from "@/shared/types/formElement";
 
 export const UserShippingInformationForm = () => {
+	const { clientInformationFirstStep, saveClientInformation } = useCheckoutsInformation();
+	const router = useRouter();
+	const pathname = usePathname();
+
 	const {
 		handleSubmit,
 		register,
 		formState: { errors, isSubmitting, isDirty, isValid },
-	} = useForm<UserShippingInformationFormData>({ resolver: zodResolver(userShippingInformationSchema) });
+	} = useForm<UserShippingInformationFormData>({
+		resolver: zodResolver(userShippingInformationSchema),
+		mode: "onChange",
+		defaultValues: {
+			email: clientInformationFirstStep.email,
+			firstName: clientInformationFirstStep.firstName,
+			lastName: clientInformationFirstStep.lastName,
+			country: clientInformationFirstStep.country,
+			postalCode: clientInformationFirstStep.postalCode,
+		},
+	});
 
 	async function onSubmit(data: UserShippingInformationFormData) {
-		console.log(isSubmitting);
-		console.log(data);
-		//TODO сделать сохранение в стор
+		await new Promise<void>((resolve) => setTimeout(resolve, 2000));
 
-		await new Promise<void>((resolve) => {
-			setTimeout(() => {
-				resolve();
-			}, 2000);
-		});
+		// const params = new URLSearchParams(data as Record<string, string>).toString();
+		// router.replace(`${pathname}?${params}`);
+		saveClientInformation(data);
+		console.log(clientInformationFirstStep);
 	}
 
 	const emailInputProps: InputProps & FormElementProps & InformationFormProps = {
@@ -43,6 +57,7 @@ export const UserShippingInformationForm = () => {
 		errors,
 		areaClassName: "w-full",
 		inputClassName: "w-full",
+		defaultValue: clientInformationFirstStep.email,
 	};
 
 	const firstNameInputProps: InputProps & FormElementProps & InformationFormProps = {
@@ -56,11 +71,11 @@ export const UserShippingInformationForm = () => {
 		errors,
 		areaClassName: "w-full",
 		inputClassName: "w-full",
+		defaultValue: clientInformationFirstStep.firstName,
 	};
 
 	const lastNameInputProps: InputProps & FormElementProps & InformationFormProps = {
 		label: "Last name",
-
 		required: true,
 		id: "lastName",
 		register,
@@ -70,6 +85,7 @@ export const UserShippingInformationForm = () => {
 		errors,
 		areaClassName: "w-full",
 		inputClassName: "w-full",
+		defaultValue: clientInformationFirstStep.lastName,
 	};
 
 	const countrySelectProps: SelectProps & FormElementProps & InformationFormProps = {
@@ -79,7 +95,7 @@ export const UserShippingInformationForm = () => {
 		register,
 		name: "country",
 		errors,
-		defaultSelectedKeys: ["russia"],
+		defaultValue: [clientInformationFirstStep.country || "Russia"],
 		options: availableCountriesForSelect,
 	};
 
@@ -90,10 +106,11 @@ export const UserShippingInformationForm = () => {
 		register,
 		name: "postalCode",
 		errors,
+		defaultValue: clientInformationFirstStep.postalCode,
 	};
 
 	return (
-		<form className="mt-3 flex w-full flex-col gap-16" onSubmit={() => handleSubmit(onSubmit)}>
+		<form className="mt-3 flex w-full flex-col gap-16" onSubmit={handleSubmit(onSubmit)}>
 			<div className="flex flex-col gap-3">
 				<h2 className="text-2xl font-bold">Contacts</h2>
 				<FormUserInput {...emailInputProps} />
@@ -108,12 +125,17 @@ export const UserShippingInformationForm = () => {
 			</div>
 			<div className="flex flex-col gap-3">
 				<h2 className="text-2xl font-bold">Postal code</h2>
-				<FormUserInputOTP {...postalCodeProps}/>
+				<FormUserInputOTP {...postalCodeProps} />
 			</div>
 
 			<div className="flex items-end justify-end">
-				<Button type="submit" className="max-w-[100px]" size="lg">
-					Next Step
+				<Button
+					type="submit"
+					className="max-w-[100px] disabled:cursor-not-allowed"
+					size="lg"
+					disabled={!isDirty || !isValid || isSubmitting}
+				>
+					{isSubmitting ? <Spinner /> : <>Next Step</>}
 				</Button>
 			</div>
 		</form>

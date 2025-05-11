@@ -5,7 +5,8 @@ import { UserShippingInformationFormData } from "../schemas/UserShippingInformat
 export type FormElementProps = {
 	readonly required: boolean;
 	readonly id: string;
-	readonly label: string
+	readonly label: string;
+	readonly defaultValue: string | [string];
 };
 
 /**Отдельный тип под каждую форму задаётся для строгой типизации*/
@@ -23,7 +24,6 @@ export type InputProps = {
 };
 
 export type SelectProps = {
-	readonly defaultSelectedKeys: [string];
 	readonly options: readonly { readonly key: string; readonly label: string }[];
 };
 
