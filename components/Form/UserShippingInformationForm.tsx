@@ -83,8 +83,17 @@ export const UserShippingInformationForm = () => {
 		options: availableCountriesForSelect,
 	};
 
+	const postalCodeProps: FormElementProps & InformationFormProps = {
+		required: true,
+		id: "postalCode",
+		label: "Postal code",
+		register,
+		name: "postalCode",
+		errors,
+	};
+
 	return (
-		<form className="mt-3 flex w-full flex-col gap-16" onSubmit={handleSubmit(onSubmit)}>
+		<form className="mt-3 flex w-full flex-col gap-16" onSubmit={() => handleSubmit(onSubmit)}>
 			<div className="flex flex-col gap-3">
 				<h2 className="text-2xl font-bold">Contacts</h2>
 				<FormUserInput {...emailInputProps} />
@@ -99,17 +108,13 @@ export const UserShippingInformationForm = () => {
 			</div>
 			<div className="flex flex-col gap-3">
 				<h2 className="text-2xl font-bold">Postal code</h2>
-				<FormUserInputOTP />
+				<FormUserInputOTP {...postalCodeProps}/>
 			</div>
 
 			<div className="flex items-end justify-end">
-				{isSubmitting ? (
-					<Spinner />
-				) : (
-					<Button type="submit" className="max-w-[100px]" size="lg">
-						Next Step
-					</Button>
-				)}
+				<Button type="submit" className="max-w-[100px]" size="lg">
+					Next Step
+				</Button>
 			</div>
 		</form>
 	);

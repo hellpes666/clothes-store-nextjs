@@ -26,3 +26,7 @@ export type SelectProps = {
 	readonly defaultSelectedKeys: [string];
 	readonly options: readonly { readonly key: string; readonly label: string }[];
 };
+
+export type InputOtpProps = {
+	
+}

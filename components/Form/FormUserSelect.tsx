@@ -28,7 +28,7 @@ export const FormUserSelect = ({
 			color="secondary"
 		>
 			{options.map((option) => (
-				<SelectItem key={option.key.toLocaleLowerCase()}>{option.label}</SelectItem>
+				<SelectItem key={option.key}>{option.label}</SelectItem>
 			))}
 		</Select>
 	);

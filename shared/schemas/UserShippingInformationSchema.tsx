@@ -2,10 +2,10 @@ import { z } from "zod";
 
 const availableCountries = ["Russia", "Belarus", "Kazakhstan", "China"] as const;
 export const availableCountriesForSelect = [
-	{ key: "russia", label: "Russia" },
-	{ key: "belarus", label: "Belarus" },
-	{ key: "kazakhstan", label: "Kazakhstan" },
-	{ key: "china", label: "China" },
+	{ key: "Russia", label: "Russia" },
+	{ key: "Belarus", label: "Belarus" },
+	{ key: "Kazakhstan", label: "Kazakhstan" },
+	{ key: "China", label: "China" },
 ] as const;
 
 export const userShippingInformationSchema = z.object({
@@ -35,8 +35,8 @@ export const userShippingInformationSchema = z.object({
 		.string({ required_error: "City is required" })
 		.min(2, { message: "City must be at least 2 characters long" }),
 
-	zipCode: z.string({ required_error: "ZIP code is required" }).regex(/^\d{6}$/, {
-		message: "ZIP code must be 6 digits",
+	postalCode: z.string({ required_error: "Postal code is required" }).regex(/^\d{6}$/, {
+		message: "Postal code must be 6 digits",
 	}),
 });
 
