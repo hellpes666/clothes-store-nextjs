@@ -6,7 +6,6 @@ export type FormElementProps = {
 	readonly required: boolean;
 	readonly id: string;
 	readonly label: string;
-	readonly defaultValue: string | [string];
 };
 
 /**Отдельный тип под каждую форму задаётся для строгой типизации*/
@@ -25,6 +24,7 @@ export type InputProps = {
 
 export type SelectProps = {
 	readonly options: readonly { readonly key: string; readonly label: string }[];
+	readonly defaultSelectedKeys: [string];
 };
 
 export type InputOtpProps = {

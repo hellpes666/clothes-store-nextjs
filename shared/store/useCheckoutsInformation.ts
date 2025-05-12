@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { createJSONStorage, persist } from "zustand/middleware";
 import { AvailableCountries } from "../schemas/UserShippingInformationSchema";
 
 type ClientInformation = {
@@ -13,25 +12,30 @@ type ClientInformation = {
 interface ICheckoutsInformation {
 	clientInformationFirstStep: ClientInformation;
 	saveClientInformation: (data: ClientInformation) => void;
+	isLoading: boolean;
 }
 
-export const useCheckoutsInformation = create<ICheckoutsInformation>()(
-	persist(
-		(set) => ({
-			clientInformationFirstStep: {
-				email: "",
-				country: "Russia",
-				firstName: "",
-				lastName: "",
-				postalCode: "",
-			},
-			saveClientInformation: (data) => {
-				set({ clientInformationFirstStep: data });
-			},
-		}),
-		{
-			name: "checkouts-storage",
-			storage: createJSONStorage(() => sessionStorage),
-		},
-	),
-);
+export const useCheckoutsInformation = create<ICheckoutsInformation>()((set) => ({
+	isLoading: false,
+	clientInformationFirstStep: {
+		email: "",
+		country: "Russia",
+		firstName: "",
+		lastName: "",
+		postalCode: "",
+	},
+	saveClientInformation: (data) => {
+		set({ isLoading: true });
+		set({ clientInformationFirstStep: data });
+
+		const currentUrl = new URL(window.location.href);
+
+		Object.entries(data).forEach(([key, value]) => {
+			currentUrl.searchParams.set(key, value);
+		});
+
+		window.history.replaceState({}, "", currentUrl.toString());
+
+		set({ isLoading: false });
+	},
+}));

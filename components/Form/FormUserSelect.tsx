@@ -9,7 +9,7 @@ export const FormUserSelect = ({
 	required,
 	id,
 	register,
-	defaultValue,
+	defaultSelectedKeys,
 	name,
 	errors,
 }: SelectProps & FormElementProps & InformationFormProps) => {
@@ -24,7 +24,7 @@ export const FormUserSelect = ({
 			errorMessage={errors[name] && errors[name].message}
 			isRequired={required}
 			labelPlacement={"outside"}
-			defaultSelectedKeys={defaultValue}
+			defaultSelectedKeys={defaultSelectedKeys}
 			color="secondary"
 		>
 			{options.map((option) => (

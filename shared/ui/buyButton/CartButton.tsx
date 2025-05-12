@@ -1,11 +1,11 @@
 "use client";
 
 import { Product } from "@/shared/entity/Product";
-import { useCartStore } from "@/shared/store/useCartStore";
+import { createCartStore } from "@/shared/store/CartStore";
 import { Button } from "@heroui/react";
 
 export const CartButton = ({ product }: { product: Product }) => {
-	const { addItem } = useCartStore();
+	const { addItem } = createCartStore();
 
 	return (
 		<Button

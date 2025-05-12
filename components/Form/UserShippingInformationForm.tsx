@@ -13,13 +13,11 @@ import { FormUserSelect } from "./FormUserSelect";
 import { FormUserInputOTP } from "./FormUserInputOTP";
 import { Button, Spinner } from "@heroui/react";
 import { useCheckoutsInformation } from "@/shared/store/useCheckoutsInformation";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { FormElementProps, InformationFormProps, InputProps, SelectProps } from "@/shared/types/formElement";
+import { createCartStore } from "@/shared/store/CartStore";
 
 export const UserShippingInformationForm = () => {
-	const { clientInformationFirstStep, saveClientInformation } = useCheckoutsInformation();
-	const router = useRouter();
-	const pathname = usePathname();
+	const { isLoading, saveClientInformation } = useCheckoutsInformation();
 
 	const {
 		handleSubmit,
@@ -28,22 +26,14 @@ export const UserShippingInformationForm = () => {
 	} = useForm<UserShippingInformationFormData>({
 		resolver: zodResolver(userShippingInformationSchema),
 		mode: "onChange",
-		defaultValues: {
-			email: clientInformationFirstStep.email,
-			firstName: clientInformationFirstStep.firstName,
-			lastName: clientInformationFirstStep.lastName,
-			country: clientInformationFirstStep.country,
-			postalCode: clientInformationFirstStep.postalCode,
-		},
 	});
 
 	async function onSubmit(data: UserShippingInformationFormData) {
+		console.log(data);
+
 		await new Promise<void>((resolve) => setTimeout(resolve, 2000));
 
-		// const params = new URLSearchParams(data as Record<string, string>).toString();
-		// router.replace(`${pathname}?${params}`);
 		saveClientInformation(data);
-		console.log(clientInformationFirstStep);
 	}
 
 	const emailInputProps: InputProps & FormElementProps & InformationFormProps = {
@@ -57,7 +47,6 @@ export const UserShippingInformationForm = () => {
 		errors,
 		areaClassName: "w-full",
 		inputClassName: "w-full",
-		defaultValue: clientInformationFirstStep.email,
 	};
 
 	const firstNameInputProps: InputProps & FormElementProps & InformationFormProps = {
@@ -71,7 +60,6 @@ export const UserShippingInformationForm = () => {
 		errors,
 		areaClassName: "w-full",
 		inputClassName: "w-full",
-		defaultValue: clientInformationFirstStep.firstName,
 	};
 
 	const lastNameInputProps: InputProps & FormElementProps & InformationFormProps = {
@@ -85,7 +73,6 @@ export const UserShippingInformationForm = () => {
 		errors,
 		areaClassName: "w-full",
 		inputClassName: "w-full",
-		defaultValue: clientInformationFirstStep.lastName,
 	};
 
 	const countrySelectProps: SelectProps & FormElementProps & InformationFormProps = {
@@ -95,7 +82,7 @@ export const UserShippingInformationForm = () => {
 		register,
 		name: "country",
 		errors,
-		defaultValue: [clientInformationFirstStep.country || "Russia"],
+		defaultSelectedKeys: ["Russia"],
 		options: availableCountriesForSelect,
 	};
 
@@ -106,7 +93,6 @@ export const UserShippingInformationForm = () => {
 		register,
 		name: "postalCode",
 		errors,
-		defaultValue: clientInformationFirstStep.postalCode,
 	};
 
 	return (
@@ -133,7 +119,7 @@ export const UserShippingInformationForm = () => {
 					type="submit"
 					className="max-w-[100px] disabled:cursor-not-allowed"
 					size="lg"
-					disabled={!isDirty || !isValid || isSubmitting}
+					disabled={!isDirty || !isValid || isSubmitting || isLoading}
 				>
 					{isSubmitting ? <Spinner /> : <>Next Step</>}
 				</Button>

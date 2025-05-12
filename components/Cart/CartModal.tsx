@@ -1,18 +1,24 @@
 "use client";
 
 import Image from "next/image";
-import { useCartStore } from "@/shared/store/useCartStore";
+import { createCartStore } from "@/shared/store/CartStore";
 import { Button, Chip, Drawer, DrawerBody, DrawerContent, DrawerFooter, DrawerHeader, Spinner } from "@heroui/react";
-import { Minus, Plus, Trash2 } from "lucide-react";
+import { Minus, Plus } from "lucide-react";
 
 export const CartModal = () => {
-	const { isCartOpen, closeCart, cartItems, isLoading, increaseItemCount, decreaseItemCount, removeItem } =
-		useCartStore();
-	const totalCost = Math.floor(
-		cartItems
-			.map((item) => item.count * item.product.price * (1 - item.product.discount / 100))
-			.reduce((curValue, initValue) => initValue + curValue, 0),
-	);
+	const useStore = createCartStore();
+
+	const {
+		isCartOpen,
+		closeCart,
+		cartItems,
+		isLoading,
+		totalBill,
+		totalDeliveryCost,
+		removeItem,
+		increaseItemCount,
+		decreaseItemCount,
+	} = useStore;
 
 	return (
 		<Drawer isOpen={isCartOpen} onClose={closeCart} size="3xl">
@@ -117,12 +123,10 @@ export const CartModal = () => {
 						<DrawerFooter className="flex items-center justify-between">
 							<h3>
 								<span className="text-secondary-800">Total:</span>{" "}
-								<span className="text-secondary-900">{totalCost ?? 0} $</span>
+								<span className="text-secondary-900">{totalBill} $</span>
 								<br />
 								<span className="text-secondary-800">Approximetly delivery cost</span>:{" "}
-								<span className="text-secondary-900">
-									{totalCost === 0 || totalCost > 5000 ? 0 : Math.floor(totalCost * 0.05)} $
-								</span>
+								<span className="text-secondary-900">{totalDeliveryCost} $</span>
 							</h3>
 
 							<Button

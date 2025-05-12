@@ -13,7 +13,6 @@ export function FormUserInput({
 	autocomplete,
 	areaClassName,
 	inputClassName,
-	defaultValue
 }: InputProps & FormElementProps & InformationFormProps) {
 	return (
 		<div className={clsx(areaClassName, "flex w-full flex-col flex-wrap gap-1 md:flex-nowrap")}>
@@ -30,7 +29,6 @@ export function FormUserInput({
 				isRequired={required}
 				labelPlacement={"outside"}
 				color="secondary"
-				defaultValue={defaultValue}
 			/>
 		</div>
 	);
