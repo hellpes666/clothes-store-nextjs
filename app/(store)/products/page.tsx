@@ -12,13 +12,13 @@ export default async function Products() {
 	const categories = (await fetchInstance<{ categories: string[] }>("GET", "/products/category")).categories;
 
 	return (
-		<div className="grid w-full grid-cols-4 gap-12 py-6">
+		<div className="grid w-full grid-cols-2 gap-12 py-6 lg:grid-cols-4">
 			{/* Filter Column (1/5) */}
-			<section className="col-span-1">
-				<h2 className="font-regular mb-2 text-sm opacity-75">Collections</h2>
+			<section className="hidden lg:col-span-1 lg:block">
+				<h2 className="font-regular mb-2 text-sm opacity-75 2xl:text-2xl">Collections</h2>
 				<ul>
 					{categories.map((category) => (
-						<li className="cursor-pointer text-lg hover:underline" key={category}>
+						<li className="cursor-pointer text-lg hover:underline 2xl:text-2xl" key={category}>
 							{category}
 						</li>
 					))}
@@ -26,7 +26,7 @@ export default async function Products() {
 			</section>
 
 			{/* Items Column (4/5) */}
-			<section className="col-span-3">
+			<section className="col-span-3 w-full">
 				{/* Product grid or list */}
 				<ItemsGrid isHomePage={false} />
 			</section>

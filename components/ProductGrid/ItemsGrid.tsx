@@ -44,7 +44,7 @@ export function ItemsGrid({ isHomePage }: { isHomePage: boolean }) {
 			<motion.div
 				className={clsx(
 					"grid w-full",
-					isHomePage ? "grid-cols-2 gap-4 md:grid-cols-3" : "w-full grid-cols-3 gap-12",
+					isHomePage ? "grid-cols-2 gap-4 md:grid-cols-3" : "w-full grid-cols-2 gap-12 xl:grid-cols-3",
 				)}
 				variants={gridVariants}
 				initial="initial"
