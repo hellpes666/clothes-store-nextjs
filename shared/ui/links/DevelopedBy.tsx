@@ -26,7 +26,7 @@ const GithubIcon = (props: object | any) => {
 export const DevelopedBy = () => {
 	return (
 		<div className="flex items-center gap-1">
-			<p className="text-sm font-medium text-secondary-500 opacity-70">developed by </p>
+			<p className="text-md font-medium text-secondary-500 opacity-70">developed by </p>
 			<CustomVariantLink
 				href="https://github.com/hellpes666"
 				isExternal

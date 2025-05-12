@@ -9,8 +9,9 @@ import { CardInfoLabel } from "@/shared/ui/buyButton/CardInfoLabel";
 /**Возвращает стили для начальной страницы, в виде кастомной сетки */
 function HomeGridStyles(index: number) {
 	const homeGridStyles = clsx({
-		"col-span-2": index === 0 || index === 5,
-		"row-span-3 md:row-span-2": index === 2,
+		"col-span-2": index === 0,
+		"col-span-2 md:col-span-3 xl:col-span-2": index === 5,
+		"row-span-auto  md:row-span-1 xl:row-span-3": index === 2,
 	});
 
 	return homeGridStyles;

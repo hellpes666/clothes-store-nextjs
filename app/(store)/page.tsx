@@ -14,15 +14,14 @@ const DynamicProductsGridPreview = dynamic(() =>
 	import("../../components/ProductGrid/ItemsGrid").then((mod) => mod.ItemsGrid),
 );
 
-//TODO разнести логику в разные layout поскольку будут 2 роуута checkouts и store
 export default async function HomePage() {
 	return (
-		<div className="flex w-full flex-col items-center justify-center gap-24 px-2 text-3xl md:px-4 md:text-5xl xl:px-6 xl:text-6xl">
+		<div className="flex w-full flex-col items-center justify-center gap-24 px-2 md:px-4 xl:px-6">
 			<h1 className="flex w-full flex-col items-start justify-start gap-1">
 				<AnimateTemplate options={animationOnAxis(0.2, -10)}>
-					There is store for
+					<span className="text-5xl xl:text-6xl">There is store for</span>
 					<br />
-					<strong className="mb-5 bg-gradient-to-r from-[#cfff04] to-[#ff033e] bg-clip-text text-transparent">
+					<strong className="mb-5 bg-gradient-to-r from-[#cfff04] to-[#ff033e] bg-clip-text text-6xl text-transparent md:text-5xl xl:text-8xl">
 						RTU MIREA
 					</strong>
 				</AnimateTemplate>
