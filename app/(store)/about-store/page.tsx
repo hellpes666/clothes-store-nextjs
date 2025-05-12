@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function AboutStore() {
 	return (
-		<div className="mx-auto max-w-4xl px-4 py-16 text-lg leading-relaxed md:text-xl">
+		<div className="mx-auto max-w-4xl px-4 py-16 leading-relaxed">
 			<h1 className="mb-6 text-3xl font-bold text-secondary-900 md:text-4xl">О магазине</h1>
 			<p className="mb-4 md:text-xl xl:text-2xl">
 				Добро пожаловать в учебный онлайн-магазин!
